@@ -40,7 +40,7 @@ function renderizarFilmes(filmes) {
         const card = document.createElement("div");
         card.classList.add("card");
         const imagem = filme.poster_path
-            ? IMAGE_URL + filme.poster_path
+            ? API_IMAGE_URL + filme.poster_path
             : "";
         card.innerHTML = `
             <img src="${imagem}" alt="${filme.title}">
@@ -53,5 +53,11 @@ function renderizarFilmes(filmes) {
         `;
         filmesGrid.appendChild(card);
         
-    })
-botaoPesquisa.addEventListener("click",buscaFilme)
+    });
+}
+botaoPesquisa.addEventListener("click", buscaFilme);
+campoPesquisa.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        buscaFilme();
+    }
+});
